@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row, Carousel } from 'react-bootstrap';
+import { Button, Col, Container, Row, Carousel } from 'react-bootstrap';
 import donaciones from '../images/donations/donaciones.jpg';
 import inventario from '../images/inventory/inventario.jpg';
 import ventas from '../images/sales/ventas.jpg';

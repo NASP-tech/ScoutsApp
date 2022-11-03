@@ -52,6 +52,8 @@ const Inventory = () => {
                                 <th className="col-4">Cantidad</th>
                                 <th className="col-4">Costo</th>
                                 <th className="col-4">Precio</th>
+                                <th className='col-4'>Modificar</th>
+                                <th className='col-4'>Eliminar</th>
                             </tr>
                         </thead>
                         {InventoryData.cardInventory.map((item, index) => {
@@ -66,6 +68,16 @@ const Inventory = () => {
                                         <td>{item.cantidad}</td>
                                         <td>{item.costo}</td>
                                         <td>{item.precio}</td>
+                                        <td>
+                                            <Button className='btn btn-warning'>
+                                                Modificar
+                                            </Button>
+                                        </td>
+                                        <td>
+                                            <Button className='btn btn-danger'>
+                                                Eliminar
+                                            </Button>
+                                        </td>
                                     </tr>
                                 </tbody>
 

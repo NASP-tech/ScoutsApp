@@ -10,7 +10,7 @@ export default function Footer() {
             <MDBContainer className='p-4'>
             </MDBContainer>
             <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-                © 2020 Copyright:
+                © 2022 Copyright:
                 <a className='text-white' href='#'>
                     Scouts de El Salvador
                 </a>

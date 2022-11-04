@@ -1,9 +1,9 @@
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 import React, { useState } from "react";
-import InventoryData from './InvetoryData';
-import inventario from '../images/inventory/inventario.jpg'
+import DonationsData from './DonationsData';
+import donaciones from '../images/donations/donaciones.jpg'
 
-const Inventory = () => {
+const Donations = () => {
 
     const [model, setModel] = useState(false);
     const [tempData, setTempData] = useState([]);
@@ -12,23 +12,21 @@ const Inventory = () => {
     const getData =
         (
             id,
-            familiaId,
-            nombre,
-            unidad,
-            existencia,
-            cantidad,
-            costo,
-            precio
+            fecha,
+            donante,
+            direccion,
+            tipo,
+            concepto,
+            total,
         ) => {
             let tempData = [
                 id,
-                familiaId,
-                nombre,
-                unidad,
-                existencia,
-                cantidad,
-                costo,
-                precio
+                fecha,
+                donante,
+                direccion,
+                tipo,
+                concepto,
+                total,
             ];
             setTempData(item => [1, ...tempData]);
             return setModel(true);
@@ -38,7 +36,7 @@ const Inventory = () => {
         <Container fluid='lg'>
             <Row className="justify-content-center">
                 <Col md={3} className="text-center text-md">
-                    <img src={inventario} width='250px' height='150px' alt="..." />
+                    <img src={donaciones} width='250px' height='150px' alt="..." />
                 </Col>
             </Row>
             <Container fluid='lg'>
@@ -46,31 +44,29 @@ const Inventory = () => {
                     <Table>
                         <thead className="thead-dark">
                             <tr>
-                                <th scope='col'>ID</th>
-                                <th className="col">FamiliaID</th>
-                                <th className="col-4">Nombre</th>
-                                <th className="col-2">Unidad</th>
-                                <th className="col-2">Existencia</th>
-                                <th className="col-2">Cantidad</th>
-                                <th className="col-2">Costo</th>
-                                <th className="col-3">Precio</th>
+                                <th scope="col">ID</th>
+                                <th className="col">Fecha</th>
+                                <th className="col-3">Donante</th>
+                                <th className="col-4">Dirección del Donante</th>
+                                <th className="col-3">Tipo de Donación</th>
+                                <th className="col-4">Concepto</th>
+                                <th className="col">Total</th>
                                 <th className='col-4'>Modificar</th>
                                 <th className='col-4'>Eliminar</th>
                             </tr>
                         </thead>
-                        {InventoryData.cardInventory.map((item, index) => {
+                        {DonationsData.cardDonations.map((item, index) => {
                             return (
 
                                 <tbody>
                                     <tr key={index}>
                                         <td>{item.id}</td>
-                                        <td> {item.familiaId} </td>
-                                        <td>{item.nombre}</td>
-                                        <td>{item.unidad}</td>
-                                        <td>{item.existencia}</td>
-                                        <td>{item.cantidad}</td>
-                                        <td>{item.costo}</td>
-                                        <td>{item.precio}</td>
+                                        <td>{item.fecha}</td>
+                                        <td>{item.donante}</td>
+                                        <td>{item.direccion}</td>
+                                        <td>{item.tipo}</td>
+                                        <td>{item.concepto}</td>
+                                        <td>{item.total}</td>
                                         <td>
                                             <Button className='btn btn-warning'>
                                                 Modificar
@@ -90,9 +86,9 @@ const Inventory = () => {
                 </Row>
             </Container>
 
-            
+
         </Container>
     );
 };
 
-export default Inventory;
+export default Donations;

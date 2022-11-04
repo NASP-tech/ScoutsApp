@@ -26,14 +26,14 @@ const HeaderScouts = () => {
                 </Navbar.Collapse>
             </Container>
             <Navbar.Brand href="/login">
-                    <img
-                        alt=""
-                        src={Logo}
-                        width="130"
-                        height="40"
-                    />{' '}
+                <img
+                    alt=""
+                    src={Logo}
+                    width="130"
+                    height="40"
+                />{' '}
 
-                </Navbar.Brand>
+            </Navbar.Brand>
         </Navbar>
     );
 };

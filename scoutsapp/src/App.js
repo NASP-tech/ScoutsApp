@@ -7,6 +7,7 @@ import Menu from './components/menu/menu';
 import Inventory from './components/inventory/Inventory';
 import Donations from './components/donations/Donations';
 import Sales from './components/sales/Sales';
+import Users from './components/users/Users';
 
 import Layout from './components/layout/Layout';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/inventory' element={<Inventory/>}></Route>
         <Route path='/donations' element={<Donations/>}></Route>
         <Route path='/sales' element={<Sales/>}></Route>
+        <Route path='/users' element={<Users/>}></Route>
         
       </Routes>
     </Layout>

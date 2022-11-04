@@ -6,6 +6,7 @@ import LoginForm from './components/authentication/LoginForm';
 import Menu from './components/menu/menu';
 import Inventory from './components/inventory/Inventory';
 import Donations from './components/donations/Donations';
+import Sales from './components/sales/Sales';
 
 import Layout from './components/layout/Layout';
 
@@ -18,7 +19,8 @@ function App() {
         <Route path='/menu' element={<Menu />}></Route>
         <Route path='/inventory' element={<Inventory/>}></Route>
         <Route path='/donations' element={<Donations/>}></Route>
-
+        <Route path='/sales' element={<Sales/>}></Route>
+        
       </Routes>
     </Layout>
 

@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import InventoryData from './InvetoryData';
 import inventario from '../images/inventory/inventario.jpg'
 
+import AddInventory from './AddInventory';
+import EditInventory from './EditInventory';
+import DeleteInventory from './DeleteInventory';
+
 const Inventory = () => {
 
     const [model, setModel] = useState(false);
@@ -39,6 +43,7 @@ const Inventory = () => {
             <Row className="justify-content-center">
                 <Col md={3} className="text-center text-md">
                     <img src={inventario} width='250px' height='150px' alt="..." />
+                    <AddInventory/>
                 </Col>
             </Row>
             <Container fluid='lg'>
@@ -72,25 +77,18 @@ const Inventory = () => {
                                         <td>{item.costo}</td>
                                         <td>{item.precio}</td>
                                         <td>
-                                            <Button className='btn btn-warning'>
-                                                Modificar
-                                            </Button>
+                                            <EditInventory/>
                                         </td>
                                         <td>
-                                            <Button className='btn btn-danger'>
-                                                Eliminar
-                                            </Button>
+                                            <DeleteInventory/>
                                         </td>
                                     </tr>
                                 </tbody>
-
                             )
                         })}
                     </Table>
                 </Row>
-            </Container>
-
-            
+            </Container>            
         </Container>
     );
 };

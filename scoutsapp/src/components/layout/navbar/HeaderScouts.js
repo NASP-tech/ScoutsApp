@@ -3,7 +3,7 @@ import Logo from '../../images/loginForm/navLogo.png';
 
 const HeaderScouts = () => {
     return (
-        <Navbar bg="secondary" variant='dark'>
+        <Navbar bg="light" variant='light'>
             <Container>
                 <Navbar.Brand href="/login">
                     <img
@@ -16,7 +16,7 @@ const HeaderScouts = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
+                    <Nav>
                         <Nav.Link href="/menu">Inicio</Nav.Link>
                         <Nav.Link href="/inventory">Inventario</Nav.Link>
                         <Nav.Link href="/sales">Ventas</Nav.Link>

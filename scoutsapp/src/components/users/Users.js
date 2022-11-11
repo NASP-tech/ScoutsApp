@@ -1,7 +1,10 @@
 import { Button, Col, Container, Row, Table, Dropdown } from 'react-bootstrap';
 import React, { useState } from "react";
 import UsersData from './UsersData';
-import usuarios from '../images/users/usuarios.jpg'
+import usuarios from '../images/users/usuarios.jpg';
+import EditUsers from './EditUsers';
+import DeleteUsers from './DeleteUsers';
+import AddUsers from './AddUsers';
 
 const Users = () => {
 
@@ -33,6 +36,7 @@ const Users = () => {
             <Row className="justify-content-center">
                 <Col md={3} className="text-center text-md">
                     <img src={usuarios} width='250px' height='150px' alt="..." />
+                    <AddUsers/>
                 </Col>
             </Row>
             <Container fluid='lg'>
@@ -73,14 +77,10 @@ const Users = () => {
                                         </td>
 
                                         <td>
-                                            <Button className='btn btn-warning'>
-                                                Modificar
-                                            </Button>
+                                            <EditUsers />
                                         </td>
                                         <td>
-                                            <Button className='btn btn-danger'>
-                                                Eliminar
-                                            </Button>
+                                            <DeleteUsers />
                                         </td>
                                     </tr>
                                 </tbody>

@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import SalesData from './SalesData';
 import sales from '../images/sales/ventas.jpg';
 
+import AddSales from './AddSales';
+import DeleteSales from './DeleteSales';
+import EditSales from './EditSales';
+
 const Sales = () => {
 
     const [model, setModel] = useState(false);
@@ -41,6 +45,7 @@ const Sales = () => {
             <Row className="justify-content-center">
                 <Col md={3} className="text-center text-md">
                     <img src={sales} width='250px' height='150px' alt="..." />
+                    <AddSales/>
                 </Col>
             </Row>
             <Container fluid='lg'>
@@ -76,14 +81,10 @@ const Sales = () => {
                                         <td>{item.descripcion}</td>
                                         <td>{item.total}</td>
                                         <td>
-                                            <Button className='btn btn-warning'>
-                                                Modificar
-                                            </Button>
+                                            <EditSales/>
                                         </td>
                                         <td>
-                                            <Button className='btn btn-danger'>
-                                                Eliminar
-                                            </Button>
+                                            <DeleteSales/>
                                         </td>
                                     </tr>
                                 </tbody>

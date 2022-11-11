@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import DonationsData from './DonationsData';
 import donaciones from '../images/donations/donaciones.jpg'
 
+import AddDonations from './AddDonations';
+import EditDonations from './EditDonations';
+import DeleteDonations from './DeleteDonations';
+
 const Donations = () => {
 
     const [model, setModel] = useState(false);
@@ -37,6 +41,7 @@ const Donations = () => {
             <Row className="justify-content-center">
                 <Col md={3} className="text-center text-md">
                     <img src={donaciones} width='250px' height='150px' alt="..." />
+                    <AddDonations/>
                 </Col>
             </Row>
             <Container fluid='lg'>
@@ -68,14 +73,10 @@ const Donations = () => {
                                         <td>{item.concepto}</td>
                                         <td>{item.total}</td>
                                         <td>
-                                            <Button className='btn btn-warning'>
-                                                Modificar
-                                            </Button>
+                                            <EditDonations/>
                                         </td>
                                         <td>
-                                            <Button className='btn btn-danger'>
-                                                Eliminar
-                                            </Button>
+                                            <DeleteDonations/>
                                         </td>
                                     </tr>
                                 </tbody>

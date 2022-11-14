@@ -1,35 +1,34 @@
-import { Button, Col, Container, Row, Table, Dropdown } from 'react-bootstrap';
-import React, { useState } from "react";
-import UsersData from './UsersData';
+import { Col, Container, Row, Table, Dropdown } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
 import usuarios from '../images/users/usuarios.jpg';
+
 import EditUsers from './EditUsers';
 import DeleteUsers from './DeleteUsers';
 import AddUsers from './AddUsers';
+import Axios from 'axios';
 
 const Users = () => {
 
-    const [model, setModel] = useState(false);
-    const [tempData, setTempData] = useState([]);
+    const [usersData, setUsersData] = useState([]);
 
+    useEffect(() => {
+        const getUsers = async () => {
+            const url = "http://localhost:4000/api/auth/";
 
-    const getData =
-        (
-            id,
-            dui,
-            nombre,
-            fecha,
-            rol,
-        ) => {
-            let tempData = [
-                id,
-                dui,
-                nombre,
-                fecha,
-                rol,
-            ];
-            setTempData(item => [1, ...tempData]);
-            return setModel(true);
+            const config = {
+                headers:{
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg0NjI4MDksImV4cCI6MTY2ODQ3MDAwOX0.lDDjv3gxVfUUX53X7aHrssQn-2Ot15ay5rYXW2TI4sA'
+                }
+            };
+
+            const {data} = await Axios.get(url, config);
+
+            console.log(data);
+
+            setUsersData(data.users);
         }
+        getUsers();
+    }, []);
 
     return (
         <Container fluid='lg'>
@@ -48,34 +47,23 @@ const Users = () => {
                                 <th className="col-2">DUI</th>
                                 <th className="col-4">Nombre</th>
                                 <th className="col-2">Fecha</th>
+                                <th className='col-2'>Email</th>
                                 <th className="col-2">Rol</th>
                                 <th className='col-4'>Modificar</th>
                                 <th className='col-4'>Eliminar</th>
                             </tr>
                         </thead>
-                        {UsersData.cardUsers.map((item, index) => {
+                        {usersData.map((item, index) => {
                             return (
 
                                 <tbody>
                                     <tr key={index}>
-                                        <td>{item.id}</td>
+                                        <td>{item._id}</td>
                                         <td> {item.dui} </td>
-                                        <td>{item.nombre}</td>
-                                        <td>{item.fecha}</td>
-                                        <td>
-                                            <Dropdown>
-                                                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                                    {item.rol}
-                                                </Dropdown.Toggle>
-
-                                                <Dropdown.Menu>
-                                                    <Dropdown.Item href="#/action-1">Administrador</Dropdown.Item>
-                                                    <Dropdown.Item href="#/action-2">Contador</Dropdown.Item>
-                                                    <Dropdown.Item href="#/action-3">Supervisor</Dropdown.Item>
-                                                </Dropdown.Menu>
-                                            </Dropdown>
-                                        </td>
-
+                                        <td>{item.name}</td>
+                                        <td>{item.hiringdate}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.role}</td>
                                         <td>
                                             <EditUsers />
                                         </td>

@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row, Table } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
 import React, { useState, useEffect } from "react";
 import sales from '../images/sales/ventas.jpg';
 

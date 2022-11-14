@@ -1,44 +1,35 @@
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
-import React, { useState } from "react";
-import SalesData from './SalesData';
+import React, { useState, useEffect } from "react";
 import sales from '../images/sales/ventas.jpg';
 
 import AddSales from './AddSales';
 import DeleteSales from './DeleteSales';
 import EditSales from './EditSales';
+import Axios from 'axios';
 
 const Sales = () => {
 
-    const [model, setModel] = useState(false);
-    const [tempData, setTempData] = useState([]);
+    const [salesData, setSalesData] = useState([]);
 
+    useEffect(() => {
+        const getSales = async () => {
+            const url = "http://localhost:4000/api/billing/";
 
-    const getData =
-        (
-            id,
-            cliente,
-            direccion,
-            fecha,
-            cuenta,
-            dui,
-            cantidad,
-            descripcion,
-            total
-        ) => {
-            let tempData = [
-                id,
-                cliente,
-                direccion,
-                fecha,
-                cuenta,
-                dui,
-                cantidad,
-                descripcion,
-                total
-            ];
-            setTempData(item => [1, ...tempData]);
-            return setModel(true);
+            const config = {
+                headers:{
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg0NjI4MDksImV4cCI6MTY2ODQ3MDAwOX0.lDDjv3gxVfUUX53X7aHrssQn-2Ot15ay5rYXW2TI4sA'
+                }
+            };
+
+            const {data} = await Axios.get(url, config);
+
+            console.log(data);
+
+            setSalesData(data.billings);
         }
+        getSales();
+    }, []);
+    
 
     return (
         <Container fluid='lg'>
@@ -66,20 +57,20 @@ const Sales = () => {
                                 <th className='col-4'>Eliminar</th>
                             </tr>
                         </thead>
-                        {SalesData.cardSales.map((item, index) => {
+                        {salesData.map((item, index) => {
                             return (
 
                                 <tbody>
                                     <tr key={index}>
-                                        <td>{item.id}</td>
-                                        <td> {item.cliente} </td>
-                                        <td>{item.direccion}</td>
-                                        <td>{item.fecha}</td>
-                                        <td>{item.cuenta}</td>
-                                        <td>{item.dui}</td>
-                                        <td>{item.cantidad}</td>
-                                        <td>{item.descripcion}</td>
-                                        <td>{item.total}</td>
+                                        <td>{item._id}</td>
+                                        <td> {item.client} </td>
+                                        <td>{item.address}</td>
+                                        <td>{item.date}</td>
+                                        <td>{item.account_name}</td>
+                                        <td>{item.dui_nit}</td>
+                                        <td>{item.quantity}</td>
+                                        <td>{item.description}</td>
+                                        <td>{item.total_cost}</td>
                                         <td>
                                             <EditSales/>
                                         </td>

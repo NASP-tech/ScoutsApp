@@ -1,5 +1,5 @@
-import { Button, Col, Container, Row, Table } from 'react-bootstrap';
-import React, { useState } from "react";
+import { Col, Container, Row, Table } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
 import inventario from '../images/inventory/inventario.jpg'
 
 import AddInventory from './AddInventory';
@@ -9,34 +9,27 @@ import Axios from 'axios';
 
 const Inventory = () => {
 
-    const [model, setModel] = useState(false);
     const [inventoryData, setInventoryData] = useState([]);
 
 
-    const getData =
-        (
-            id,
-            familiaId,
-            nombre,
-            unidad,
-            existencia,
-            cantidad,
-            costo,
-            precio
-        ) => {
-            let tempData = [
-                id,
-                familiaId,
-                nombre,
-                unidad,
-                existencia,
-                cantidad,
-                costo,
-                precio
-            ];
-            setTempData(item => [1, ...tempData]);
-            return setModel(true);
+    useEffect(() => {
+        const getInventory = async () => {
+            const url = "http://localhost:4000/api/product/";
+
+            const config = {
+                headers:{
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg0NjI4MDksImV4cCI6MTY2ODQ3MDAwOX0.lDDjv3gxVfUUX53X7aHrssQn-2Ot15ay5rYXW2TI4sA'
+                }
+            };
+
+            const {data} = await Axios.get(url, config);
+
+            console.log(data);
+
+            setInventoryData(data.products);
         }
+        getInventory();
+    }, []);
 
     return (
         <Container fluid='lg'>
@@ -63,19 +56,21 @@ const Inventory = () => {
                                 <th className='col-4'>Eliminar</th>
                             </tr>
                         </thead>
-                        {InventoryData.cardInventory.map((item, index) => {
+                        <tbody>
+                        {inventoryData.map((item, index) => {
+
                             return (
 
-                                <tbody>
+                                
                                     <tr key={index}>
-                                        <td>{item.id}</td>
-                                        <td> {item.familiaId} </td>
-                                        <td>{item.nombre}</td>
-                                        <td>{item.unidad}</td>
-                                        <td>{item.existencia}</td>
-                                        <td>{item.cantidad}</td>
-                                        <td>{item.costo}</td>
-                                        <td>{item.precio}</td>
+                                        <td>{item._id}</td>
+                                        <td> {item.family_id} </td>
+                                        <td>{item.name}</td>
+                                        <td>{item.quantity}</td>
+                                        <td>{item.existence}</td>
+                                        <td>{item.unit}</td>
+                                        <td>{item.cost}</td>
+                                        <td>{item.sale_price}</td>
                                         <td>
                                             <EditInventory/>
                                         </td>
@@ -83,9 +78,10 @@ const Inventory = () => {
                                             <DeleteInventory/>
                                         </td>
                                     </tr>
-                                </tbody>
+                                
                             )
                         })}
+                        </tbody>
                     </Table>
                 </Row>
             </Container>            

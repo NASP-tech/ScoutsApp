@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row, Table } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
 import React, { useState, useEffect } from "react";
 import donaciones from '../images/donations/donaciones.jpg'
 
@@ -9,8 +9,6 @@ import Axios from 'axios';
 
 const Donations = () => {
     
-
-    const [model, setModel] = useState(false);
     const [donationsData, setDonationsData] = useState([]);
 
     useEffect(() => {
@@ -20,9 +18,9 @@ const Donations = () => {
 
             const config = {
                 headers:{
-                  'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg0NTgzOTgsImV4cCI6MTY2ODQ2NTU5OH0.J7x1YcYmsyaiUgVtAMF4mwORZICRjUPMtE8lPJahd2w'
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg0NTgzOTgsImV4cCI6MTY2ODQ2NTU5OH0.J7x1YcYmsyaiUgVtAMF4mwORZICRjUPMtE8lPJahd2w'
                 }
-              };
+            };
 
             const {data} = await Axios.get(url, config);
 

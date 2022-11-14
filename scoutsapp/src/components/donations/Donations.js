@@ -1,40 +1,35 @@
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
-import React, { useState } from "react";
-import DonationsData from './DonationsData';
+import React, { useState, useEffect } from "react";
 import donaciones from '../images/donations/donaciones.jpg'
 
 import AddDonations from './AddDonations';
 import EditDonations from './EditDonations';
 import DeleteDonations from './DeleteDonations';
+import Axios from 'axios';
 
 const Donations = () => {
+    
 
     const [model, setModel] = useState(false);
-    const [tempData, setTempData] = useState([]);
+    const [donationsData, setDonationsData] = useState([]);
 
+    useEffect(() => {
 
-    const getData =
-        (
-            id,
-            fecha,
-            donante,
-            direccion,
-            tipo,
-            concepto,
-            total,
-        ) => {
-            let tempData = [
-                id,
-                fecha,
-                donante,
-                direccion,
-                tipo,
-                concepto,
-                total,
-            ];
-            setTempData(item => [1, ...tempData]);
-            return setModel(true);
+        const getDonations = async () =>{
+            const url = "http://localhost:4000/api/donation/";
+
+            const config = {
+                headers:{
+                  'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg0NTgzOTgsImV4cCI6MTY2ODQ2NTU5OH0.J7x1YcYmsyaiUgVtAMF4mwORZICRjUPMtE8lPJahd2w'
+                }
+              };
+
+            const {data} = await Axios.get(url, config);
+
+            setDonationsData(data.donations); 
         }
+        getDonations();
+    }, []);
 
     return (
         <Container fluid='lg'>
@@ -60,18 +55,19 @@ const Donations = () => {
                                 <th className='col-4'>Eliminar</th>
                             </tr>
                         </thead>
-                        {DonationsData.cardDonations.map((item, index) => {
+                        {donationsData.map((item, index) => {
+
                             return (
 
                                 <tbody>
                                     <tr key={index}>
-                                        <td>{item.id}</td>
-                                        <td>{item.fecha}</td>
-                                        <td>{item.donante}</td>
-                                        <td>{item.direccion}</td>
-                                        <td>{item.tipo}</td>
-                                        <td>{item.concepto}</td>
-                                        <td>{item.total}</td>
+                                        <td>{item._id}</td>
+                                        <td>{item.donationDate}</td>
+                                        <td>{item.nit}</td>
+                                        <td>{item.address}</td>
+                                        <td>{item.donationType}</td>
+                                        <td>{item.donationType}</td>
+                                        <td>{item.moneyQuantity}</td>
                                         <td>
                                             <EditDonations/>
                                         </td>

@@ -1,16 +1,16 @@
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 import React, { useState } from "react";
-import InventoryData from './InvetoryData';
 import inventario from '../images/inventory/inventario.jpg'
 
 import AddInventory from './AddInventory';
 import EditInventory from './EditInventory';
 import DeleteInventory from './DeleteInventory';
+import Axios from 'axios';
 
 const Inventory = () => {
 
     const [model, setModel] = useState(false);
-    const [tempData, setTempData] = useState([]);
+    const [inventoryData, setInventoryData] = useState([]);
 
 
     const getData =

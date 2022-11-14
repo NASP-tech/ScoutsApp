@@ -38,6 +38,22 @@ function EditUsers() {
                             <Form.Label>Fecha</Form.Label>
                             <Form.Control type='text' placeholder='Ingrese el Fecha'></Form.Control>
                         </Form.Group>
+                        <Form.Group className='mb-3'>
+                            <td>
+                                <Dropdown className='justify-content-center'>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                        Rol
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="#/action-1">Administrador</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-2">Contador</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-3">Supervisor</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </td>
+
+                        </Form.Group>
                     </Form>
                 </Modal.Body>
 

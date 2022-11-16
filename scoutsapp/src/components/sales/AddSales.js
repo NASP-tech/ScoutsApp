@@ -1,9 +1,48 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
+import { useForm } from '../../hooks/useForm';
+import Swal from 'sweetalert';
+
 function AddSales() {
 
     const [isShow, invokeModal] = useState(false);
+
+    const [ formValues, handleInputChange] = useForm({
+        exempt_sales: 0,
+        unitPrice: 0,
+        client: '',
+        address: '',
+        date: 1,
+        account_name: '',
+        dui_nit: '',
+        quantity: 0,
+        description: '',
+        recorded_sale: 0,
+        total_cost: 0,
+        reciever_name: '',
+        foreign_passport_residency: '',
+        foreign_name: '',
+        reciever_dui: '',      
+    });
+
+    const {
+        exempt_sales, 
+        unitPrice, 
+        client, 
+        address, 
+        date, 
+        account_name, 
+        dui_nit, 
+        quantity,
+        description,
+        recorded_sale, 
+        total_cost, 
+        reciever_name,
+        foreign_passport_residency,
+        foreign_name,
+        reciever_dui
+    } = formValues;
 
     const initModal = () => {
         return invokeModal(!isShow);
@@ -22,10 +61,6 @@ function AddSales() {
 
                 <Modal.Body>
                     <Form>
-                        <Form.Group className='mb-3'>
-                            <Form.Label>ID</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el ID'></Form.Control>
-                        </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Cliente</Form.Label>
                             <Form.Control type='text' placeholder='Ingrese el cliente'></Form.Control>

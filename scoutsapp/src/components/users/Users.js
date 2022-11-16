@@ -17,7 +17,7 @@ const Users = () => {
 
             const config = {
                 headers:{
-                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg0NjI4MDksImV4cCI6MTY2ODQ3MDAwOX0.lDDjv3gxVfUUX53X7aHrssQn-2Ot15ay5rYXW2TI4sA'
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg2MzUzNTgsImV4cCI6MTY2ODY0MjU1OH0.DPKHZ2q7NaAmcMVJ6Az_BwjCFGjAT10jthtwDdKRWhk'
                 }
             };
 
@@ -43,7 +43,6 @@ const Users = () => {
                     <Table>
                         <thead className="thead-dark">
                             <tr>
-                                <th scope='col'>ID</th>
                                 <th className="col-2">DUI</th>
                                 <th className="col-4">Nombre</th>
                                 <th className="col-2">Fecha</th>
@@ -58,7 +57,6 @@ const Users = () => {
 
                                 <tbody>
                                     <tr key={index}>
-                                        <td>{item._id}</td>
                                         <td> {item.dui} </td>
                                         <td>{item.name}</td>
                                         <td>{item.hiringdate}</td>

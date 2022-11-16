@@ -41,7 +41,7 @@ function AddUsers() {
 
         Axios.post(url, body)
             .then(response => {
-                console.log(response);
+                Swal("Success", "User Created!","success");
             });
 
         } else {

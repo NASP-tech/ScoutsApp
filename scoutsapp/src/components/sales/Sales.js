@@ -44,7 +44,6 @@ const Sales = () => {
                     <Table>
                         <thead className="thead-dark">
                             <tr>
-                                <th scope='col'>ID</th>
                                 <th className="col-3">Cliente</th>
                                 <th className="col-3">Dirección</th>
                                 <th className="col">Fecha</th>
@@ -62,7 +61,6 @@ const Sales = () => {
 
                                 <tbody>
                                     <tr key={index}>
-                                        <td>{item._id}</td>
                                         <td> {item.client} </td>
                                         <td>{item.address}</td>
                                         <td>{item.date}</td>

@@ -56,7 +56,6 @@ function AddInventory() {
         Axios.post(url, body, config)
             .then(response => {
                 Swal("Success", "Inventory Created!","success");
-                console.log(response);
             });
     }
 

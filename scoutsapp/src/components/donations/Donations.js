@@ -42,7 +42,6 @@ const Donations = () => {
                     <Table>
                         <thead className="thead-dark">
                             <tr>
-                                <th scope="col">ID</th>
                                 <th className="col">Fecha</th>
                                 <th className="col-3">Donante</th>
                                 <th className="col-4">Dirección del Donante</th>
@@ -59,7 +58,6 @@ const Donations = () => {
 
                                 <tbody>
                                     <tr key={index}>
-                                        <td>{item._id}</td>
                                         <td>{item.donationDate}</td>
                                         <td>{item.nit}</td>
                                         <td>{item.address}</td>

@@ -44,7 +44,6 @@ const Inventory = () => {
                     <Table>
                         <thead className="thead-dark">
                             <tr>
-                                <th scope='col'>ID</th>
                                 <th className="col">FamiliaID</th>
                                 <th className="col-4">Nombre</th>
                                 <th className="col-2">Unidad</th>
@@ -63,7 +62,6 @@ const Inventory = () => {
 
                                 
                                     <tr key={index}>
-                                        <td>{item._id}</td>
                                         <td> {item.family_id} </td>
                                         <td>{item.name}</td>
                                         <td>{item.quantity}</td>

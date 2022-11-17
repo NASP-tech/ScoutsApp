@@ -36,7 +36,6 @@ function AddSales() {
         dui_nit,
         quantity,
         description,
-        total_cost,
         reciever_name,
         reciever_dui
     } = formValues;
@@ -51,7 +50,7 @@ function AddSales() {
 
         const config = {
             headers:{
-                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg2NDAyMDAsImV4cCI6MTY2ODY0NzQwMH0.Rc-8DUzpcSqaZOBfpV7Z1e5JJ2b-HNQwPAssOTNLlH0'
+                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg3MTYxODEsImV4cCI6MTY2ODcyMzM4MX0.wFlNSxyorsl5XIClnDWT9IzNjKDgJPpZE-KuA-Ye9W4'
             }
         };
 

@@ -1,9 +1,24 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
+import { useForm } from '../../hooks/useForm';
+import Swal from 'sweetalert';
+import Axios from 'axios';
+
 function AddDonations() {
 
     const [isShow, invokeModal] = useState(false);
+
+    const [formValues, handleInputChange] = useForm({
+        donationDate: 0,
+        address: '',
+        nit: '',
+        donationType: '',
+        moneyQuantity: 0
+    });
+
+    
+
 
     const initModal = () => {
         return invokeModal(!isShow);

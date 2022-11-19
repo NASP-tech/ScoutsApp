@@ -1,12 +1,35 @@
 import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-function DeleteSales() {
+import Swal from 'sweetalert';
+import Axios from 'axios';
+
+function DeleteSales({ idSales }) {
 
     const [isShow, invokeModal] = useState(false);
 
     const initModal = () => {
         return invokeModal(!isShow);
+    }
+
+    const handleDelete = () => {
+
+        const url = `http://localhost:4000/api/billing/${idSales}`;
+
+        const config = {
+            headers:{
+                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4NDEyODMsImV4cCI6MTY2ODg0ODQ4M30.QBiF6RSkRj-49DG7Eb3f9ffrj4dBBlgsHX8uBJRLmYE'
+            }
+        };
+
+        Axios.delete(url, config)
+            .then(response => {
+                Swal("Success", "Sale deleted!","success");
+            }).catch(function (error) {
+                console.log(error.toJSON());
+                Swal( "Oops" ,  "Something went wrong" ,  "error" );
+            });
+
     }
 
     return (
@@ -25,7 +48,7 @@ function DeleteSales() {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="danger" onClick={initModal}>
+                    <Button variant="danger" onClick={handleDelete}>
                         Eliminar
                     </Button>
                 </Modal.Footer>

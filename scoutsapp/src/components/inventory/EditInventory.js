@@ -1,17 +1,107 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-function EditInventory() {
+import Swal from 'sweetalert';
+import Axios from 'axios';
+
+function EditInventory({ idInventory }) {
 
     const [isShow, invokeModal] = useState(false);
+
+    const [name, setName] = useState('');
+    const [unit, setUnit] = useState('');
+    const [existence, setExistence] = useState('');
+    const [quantity, setQuantity] = useState(0);
+    const [cost, setCost] = useState(0);
+    const [sale_price, setSalePrice] = useState(0);
+    const [family_id, setFamilyID] = useState('');
 
     const initModal = () => {
         return invokeModal(!isShow);
     }
 
+    const handleClick = () => {
+
+        const url = `http://localhost:4000/product/${idInventory}`;
+
+        const config = {
+            headers: {
+                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4MzI1NzQsImV4cCI6MTY2ODgzOTc3NH0.t6kjMLCbH3v6dsalPs3XQtZ53nEIAQt5TrLlgRwCFe8'
+            }
+        };
+
+        const body = {
+            "name": name,
+            "unit": unit,
+            "existence": existence,
+            "quantity": quantity,
+            "cost": cost,
+            "sale_price": sale_price,
+            "family_id": family_id
+        };
+
+        Axios.put(url, body, config)
+            .then(response => {
+                Swal("Success", "Inventory Updated!", "success");
+            }).catch(function (error) {
+                console.log(error.toJSON());
+                Swal("Oops", "Something went wrong", "error");
+            });
+    }
+
+    const handleName = (e) => {
+        setName(e.target.value);
+    }
+
+    const handleUnit = (e) => {
+        setUnit(e.target.value);
+    }
+
+    const handleExistence = (e) => {
+        setExistence(e.target.value);
+    }
+
+    const handleQuantity = (e) => {
+        setQuantity(e.target.value);
+    }
+
+    const handleCost = (e) => {
+        setCost(e.target.value);
+    }
+
+    const handlePrice = (e) => {
+        setSalePrice(e.target.value);
+    }
+
+    const handleFamily = (e) => {
+        setFamilyID(e.target.value);
+    }
+
+    const handleUpdateClick = async() => {
+        const url = `http://localhost:4000/product/${idInventory}`;
+
+            const config = {
+                headers:{
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4NDEyODMsImV4cCI6MTY2ODg0ODQ4M30.QBiF6RSkRj-49DG7Eb3f9ffrj4dBBlgsHX8uBJRLmYE'
+                }
+            };
+
+            const {data} = await Axios.get(url, config);
+            
+            setName(data.inventory.name);
+            setUnit(data.inventory.unit);
+            setExistence(data.inventory.existence);
+            setQuantity(data.inventory.quantity);
+            setCost(data.inventory.cost);
+            setSalePrice(data.inventory.sale_price);
+            setFamilyID(data.inventory.family_id);
+
+            initModal();
+    }
+
     return (
         <>
-            <Button variant="btn btn-warning" onClick={initModal}>
+            <Button variant="btn btn-warning" onClick={handleUpdateClick}>
                 Modificar
             </Button>
 
@@ -23,43 +113,39 @@ function EditInventory() {
                 <Modal.Body>
                     <Form>
                         <Form.Group className='mb-3'>
-                            <Form.Label>ID</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el ID'></Form.Control>
-                        </Form.Group>
-                        <Form.Group className='mb-3'>
                             <Form.Label>Familia ID</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el ID de la familia'></Form.Control>
+                            <Form.Control name="family_id" value={family_id} onChange={handleFamily} type='text' placeholder='Ingrese el ID de la familia'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Nombre</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el nombre'></Form.Control>
+                            <Form.Control name="name" value={name} onChange={handleName} type='text' placeholder='Ingrese el nombre'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Unidad</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese la unidad'></Form.Control>
+                            <Form.Control name="unit" value={unit} onChange={handleUnit} type='text' placeholder='Ingrese la unidad'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Existencia</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el número de cuenta'></Form.Control>
+                            <Form.Control name="existence" value={existence} onChange={handleExistence} type='text' placeholder='Ingrese el número de cuenta'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Cantidad</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese la cantidad'></Form.Control>
+                            <Form.Control name="quantity" value={quantity} onChange={handleQuantity} type='text' placeholder='Ingrese la cantidad'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Costo</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el costo'></Form.Control>
+                            <Form.Control name="cost" value={cost} onChange={handleCost} type='text' placeholder='Ingrese el costo'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Precio</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el precio'></Form.Control>
+                            <Form.Control name="sale_price" value={sale_price} onChange={handlePrice} type='text' placeholder='Ingrese el precio'></Form.Control>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
 
                 <Modal.Footer>
 
-                    <Button variant="dark" onClick={initModal}>
+                    <Button variant="dark" onClick={handleClick}>
                         Modificar
                     </Button>
 

@@ -18,7 +18,7 @@ const Donations = () => {
 
             const config = {
                 headers:{
-                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg3MTYxODEsImV4cCI6MTY2ODcyMzM4MX0.wFlNSxyorsl5XIClnDWT9IzNjKDgJPpZE-KuA-Ye9W4'
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4NDU4NTcsImV4cCI6MTY2ODg1MzA1N30.X-1t0qupNL3_5aXwxntCU7izqrtjCn4egscISaqei5Q'
                 }
             };
 
@@ -44,9 +44,9 @@ const Donations = () => {
                             <tr>
                                 <th className="col">Fecha</th>
                                 <th className="col-3">Donante</th>
+                                <th className="col-3">NIT</th>
                                 <th className="col-4">Dirección del Donante</th>
                                 <th className="col-3">Tipo de Donación</th>
-                                <th className="col-4">Concepto</th>
                                 <th className="col">Total</th>
                                 <th className='col-4'>Modificar</th>
                                 <th className='col-4'>Eliminar</th>
@@ -59,16 +59,16 @@ const Donations = () => {
                                 <tbody>
                                     <tr key={index}>
                                         <td>{item.donationDate}</td>
+                                        <td>{item.donor}</td>
                                         <td>{item.nit}</td>
                                         <td>{item.address}</td>
                                         <td>{item.donationType}</td>
-                                        <td>{item.donationType}</td>
                                         <td>{item.moneyQuantity}</td>
                                         <td>
-                                            <EditDonations/>
+                                            <EditDonations idDonation={item._id}/>
                                         </td>
                                         <td>
-                                            <DeleteDonations/>
+                                            <DeleteDonations idDonation={item._id}/>
                                         </td>
                                     </tr>
                                 </tbody>

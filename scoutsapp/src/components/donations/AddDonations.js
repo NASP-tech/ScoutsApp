@@ -40,7 +40,7 @@ function AddDonations() {
 
         const config = {
             headers:{
-                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg3MTYxODEsImV4cCI6MTY2ODcyMzM4MX0.wFlNSxyorsl5XIClnDWT9IzNjKDgJPpZE-KuA-Ye9W4'
+                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4NDU4NTcsImV4cCI6MTY2ODg1MzA1N30.X-1t0qupNL3_5aXwxntCU7izqrtjCn4egscISaqei5Q'
             }
         };
 

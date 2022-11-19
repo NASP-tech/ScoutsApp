@@ -1,17 +1,96 @@
 import { useState } from 'react';
-import { Modal, Button, Form, Dropdown } from 'react-bootstrap';
+import { Modal, Button, Form, Dropdown, DropdownButton } from 'react-bootstrap';
+import moment from 'moment';
+import Swal from 'sweetalert';
+import Axios from 'axios';
 
-function EditUsers() {
+function EditUsers({ idUsuario }) {
 
     const [isShow, invokeModal] = useState(false);
+    const [role, setRole] = useState(3);
+    const [name, setName] = useState('');
+    const [dui, setDui] = useState('');
+    const [hiringdate, setHiringDate] = useState(1);
 
     const initModal = () => {
         return invokeModal(!isShow);
     }
 
+    const handleClick = () => {
+        
+        if(dui.length === 9){
+
+            const url = `http://localhost:4000/api/auth/${idUsuario}`;
+
+            const config = {
+                headers:{
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzYxZmZlNzg1YzI5NjZlNGYwNDk2OTIiLCJuYW1lIjoiRHlsYW4gTWVsZW5kZXoiLCJpYXQiOjE2Njg4MjgxMTksImV4cCI6MTY2ODgzNTMxOX0.0bXGxEcAOgIjfFsK5pBAxcyj1MhMvkx08Say-VXYk1A'
+                }
+            };
+
+            const body = {
+                "name": name,
+                "dui": dui,
+                "hiringdate": hiringdate,
+                "role": role
+            };
+
+            Axios.put(url, body, config)
+                .then(response => {
+                    Swal("Success", "User Updated!","success");
+                }).catch(function (error) {
+                    console.log(error.toJSON());
+                    Swal( "Oops" ,  "Something went wrong" ,  "error" );
+                });
+
+        } else {
+            Swal( "Oops" ,  "Dui should be length 9!" ,  "error" )
+        }
+        
+    }
+
+    const handleSelect=(e)=>{
+        setRole(e);
+    }
+
+    const handleName=(e)=>{
+        setName(e.target.value);
+    }
+
+    const handleDui=(e)=>{
+        setDui(e.target.value);
+    }
+
+    const handleHiringDate=(e)=>{
+        setHiringDate(e.target.value);
+    }
+
+    const handleUpdateClick = async() => {
+        const url = `http://localhost:4000/api/auth/getUser/${idUsuario}`;
+
+            const config = {
+                headers:{
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzYxZmZlNzg1YzI5NjZlNGYwNDk2OTIiLCJuYW1lIjoiRHlsYW4gTWVsZW5kZXoiLCJpYXQiOjE2Njg4MjgxMTksImV4cCI6MTY2ODgzNTMxOX0.0bXGxEcAOgIjfFsK5pBAxcyj1MhMvkx08Say-VXYk1A'
+                }
+            };
+
+            const {data} = await Axios.get(url, config);
+
+            const format2 = "YYYY-MM-DD";
+            var dateE = new Date(data.user.hiringdate);
+            var dateTimeE = moment(dateE).format(format2);
+
+            setName(data.user.name);
+            setDui(data.user.dui);
+            setHiringDate(dateTimeE);
+            setRole(data.user.role);
+
+            initModal();
+    }
+
     return (
         <>
-            <Button variant="btn btn-warning" onClick={initModal}>
+            <Button variant="btn btn-warning" onClick={handleUpdateClick}>
                 Modificar
             </Button>
 
@@ -23,34 +102,32 @@ function EditUsers() {
                 <Modal.Body>
                     <Form>
                         <Form.Group className='mb-3'>
-                            <Form.Label>ID</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el ID'></Form.Control>
-                        </Form.Group>
-                        <Form.Group className='mb-3'>
                             <Form.Label>DUI</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el DUI'></Form.Control>
+                            <Form.Control name="dui" value={dui} onChange={ handleDui } type='text' placeholder='Ingrese el DUI'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Nombre</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el Nombre'></Form.Control>
+                            <Form.Control name="name" value={name} onChange={ handleName } type='text' placeholder='Ingrese el Nombre'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Fecha</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el Fecha'></Form.Control>
+                            <Form.Control name="hiringdate" value={hiringdate} onChange={ handleHiringDate } type='date' placeholder='Ingrese el Fecha'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <td>
-                                <Dropdown className='justify-content-center'>
-                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                        Rol
-                                    </Dropdown.Toggle>
+                                <DropdownButton 
+                                    alignRight
+                                    title="Rol"    
+                                    onSelect={handleSelect} 
+                                    value={role}                                                             
+                                    >                                
 
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item href="#/action-1">Administrador</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Contador</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">Supervisor</Dropdown.Item>
+                                    <Dropdown.Menu >
+                                        <Dropdown.Item eventKey="1" href="#/action-1">Administrador</Dropdown.Item>
+                                        <Dropdown.Item eventKey="2" href="#/action-2">Contador</Dropdown.Item>
+                                        <Dropdown.Item eventKey="3" href="#/action-3">Supervisor</Dropdown.Item>
                                     </Dropdown.Menu>
-                                </Dropdown>
+                                </DropdownButton>
                             </td>
 
                         </Form.Group>
@@ -59,7 +136,7 @@ function EditUsers() {
 
                 <Modal.Footer>
 
-                    <Button variant="dark" onClick={initModal}>
+                    <Button variant="dark" onClick={handleClick}>
                         Modificar
                     </Button>
 

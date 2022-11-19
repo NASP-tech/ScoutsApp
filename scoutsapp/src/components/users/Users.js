@@ -1,4 +1,4 @@
-import { Col, Container, Row, Table, Dropdown } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import usuarios from '../images/users/usuarios.jpg';
 
@@ -17,13 +17,11 @@ const Users = () => {
 
             const config = {
                 headers:{
-                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg3MTYxODEsImV4cCI6MTY2ODcyMzM4MX0.wFlNSxyorsl5XIClnDWT9IzNjKDgJPpZE-KuA-Ye9W4'
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzYxZmZlNzg1YzI5NjZlNGYwNDk2OTIiLCJuYW1lIjoiRHlsYW4gTWVsZW5kZXoiLCJpYXQiOjE2Njg4MjgxMTksImV4cCI6MTY2ODgzNTMxOX0.0bXGxEcAOgIjfFsK5pBAxcyj1MhMvkx08Say-VXYk1A'
                 }
             };
 
             const {data} = await Axios.get(url, config);
-
-            console.log(data);
 
             setUsersData(data.users);
         }
@@ -55,18 +53,18 @@ const Users = () => {
                         {usersData.map((item, index) => {
                             return (
 
-                                <tbody>
-                                    <tr key={index}>
+                                <tbody key={index}>
+                                    <tr>
                                         <td> {item.dui} </td>
                                         <td>{item.name}</td>
                                         <td>{item.hiringdate}</td>
                                         <td>{item.email}</td>
                                         <td>{item.role}</td>
                                         <td>
-                                            <EditUsers />
+                                            <EditUsers idUsuario={item._id} />
                                         </td>
                                         <td>
-                                            <DeleteUsers />
+                                            <DeleteUsers idUsuario={item._id} />
                                         </td>
                                     </tr>
                                 </tbody>

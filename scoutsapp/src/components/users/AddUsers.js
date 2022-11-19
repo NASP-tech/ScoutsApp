@@ -45,7 +45,6 @@ function AddUsers() {
             });
 
         } else {
-            console.log('Passwords does not match.');
             Swal( "Oops" ,  "Passwords does not match!" ,  "error" )
         }
     }

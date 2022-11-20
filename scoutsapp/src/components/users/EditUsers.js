@@ -24,7 +24,7 @@ function EditUsers({ idUsuario }) {
 
             const config = {
                 headers:{
-                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4MzI1NzQsImV4cCI6MTY2ODgzOTc3NH0.t6kjMLCbH3v6dsalPs3XQtZ53nEIAQt5TrLlgRwCFe8'
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
                 }
             };
 
@@ -69,7 +69,7 @@ function EditUsers({ idUsuario }) {
 
             const config = {
                 headers:{
-                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzYxZmZlNzg1YzI5NjZlNGYwNDk2OTIiLCJuYW1lIjoiRHlsYW4gTWVsZW5kZXoiLCJpYXQiOjE2Njg4MjgxMTksImV4cCI6MTY2ODgzNTMxOX0.0bXGxEcAOgIjfFsK5pBAxcyj1MhMvkx08Say-VXYk1A'
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
                 }
             };
 

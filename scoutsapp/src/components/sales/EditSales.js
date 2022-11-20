@@ -33,11 +33,11 @@ function EditSales({ idSales }) {
         
         if(dui_nit.length === 9){
 
-            const url = `http://localhost:4000/billing/${idSales}`;
+            const url = `http://localhost:4000/api/billing/${idSales}`;
 
             const config = {
                 headers:{
-                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4MzI1NzQsImV4cCI6MTY2ODgzOTc3NH0.t6kjMLCbH3v6dsalPs3XQtZ53nEIAQt5TrLlgRwCFe8'
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
                 }
             };
 
@@ -134,25 +134,25 @@ function EditSales({ idSales }) {
 
 
     const handleUpdateClick = async() => {
-        const url = `http://localhost:4000/billing/${idSales}`;
+        const url = `http://localhost:4000/api/billing/getBilling/${idSales}`;
 
             const config = {
                 headers:{
-                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4NDEyODMsImV4cCI6MTY2ODg0ODQ4M30.QBiF6RSkRj-49DG7Eb3f9ffrj4dBBlgsHX8uBJRLmYE'
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
                 }
             };
 
             const {data} = await Axios.get(url, config);
-
+            
             const format2 = "YYYY-MM-DD";
-            var dateE = new Date(data.user.hiringdate);
+            var dateE = new Date(data.billing.date);
             var dateTimeE = moment(dateE).format(format2);
 
             setExemptSales(data.billing.exempt_sales);
             setUnitPrice(data.billing.unitPrice);
             setClient(data.billing.client);
             setAddress(data.billing.address);
-            setDate(data.billing.date);
+            setDate(dateTimeE);
             setAccountName(data.billing.account_name);
             setDuiNit(data.billing.dui_nit);
             setQuantity(data.billing.quantity);

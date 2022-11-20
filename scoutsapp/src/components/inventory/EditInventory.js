@@ -22,11 +22,11 @@ function EditInventory({ idInventory }) {
 
     const handleClick = () => {
 
-        const url = `http://localhost:4000/product/${idInventory}`;
+        const url = `http://localhost:4000/api/product/${idInventory}`;
 
         const config = {
             headers: {
-                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4MzI1NzQsImV4cCI6MTY2ODgzOTc3NH0.t6kjMLCbH3v6dsalPs3XQtZ53nEIAQt5TrLlgRwCFe8'
+                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
             }
         };
 
@@ -78,23 +78,23 @@ function EditInventory({ idInventory }) {
     }
 
     const handleUpdateClick = async() => {
-        const url = `http://localhost:4000/product/${idInventory}`;
+        const url = `http://localhost:4000/api/product/getProduct/${idInventory}`;
 
             const config = {
                 headers:{
-                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg4NDEyODMsImV4cCI6MTY2ODg0ODQ4M30.QBiF6RSkRj-49DG7Eb3f9ffrj4dBBlgsHX8uBJRLmYE'
+                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
                 }
             };
 
             const {data} = await Axios.get(url, config);
             
-            setName(data.inventory.name);
-            setUnit(data.inventory.unit);
-            setExistence(data.inventory.existence);
-            setQuantity(data.inventory.quantity);
-            setCost(data.inventory.cost);
-            setSalePrice(data.inventory.sale_price);
-            setFamilyID(data.inventory.family_id);
+            setName(data.product.name);
+            setUnit(data.product.unit);
+            setExistence(data.product.existence);
+            setQuantity(data.product.quantity);
+            setCost(data.product.cost);
+            setSalePrice(data.product.sale_price);
+            setFamilyID(data.product.family_id);
 
             initModal();
     }
@@ -112,10 +112,6 @@ function EditInventory({ idInventory }) {
 
                 <Modal.Body>
                     <Form>
-                        <Form.Group className='mb-3'>
-                            <Form.Label>Familia ID</Form.Label>
-                            <Form.Control name="family_id" value={family_id} onChange={handleFamily} type='text' placeholder='Ingrese el ID de la familia'></Form.Control>
-                        </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Nombre</Form.Label>
                             <Form.Control name="name" value={name} onChange={handleName} type='text' placeholder='Ingrese el nombre'></Form.Control>

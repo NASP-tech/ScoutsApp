@@ -1,10 +1,51 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import { library } from '@fortawesome/fontawesome-svg-core'
 import Logo from '../images/loginForm/logoScouts.png';
 import nav from '../images/loginForm/navLogo.png';
+import { useForm } from '../../hooks/useForm';
+import Swal from 'sweetalert';
+import Axios from 'axios';
 
 const LoginForm = () => {
+
+    const navigate = useNavigate();
+
+    const [ formValues, handleInputChange ] = useForm({
+        email: '',
+        password: '',
+    });
+
+    const { email, password } = formValues;
+
+    const handleClick = (e) => { 
+        e.preventDefault();
+        const url = 'http://localhost:4000/api/auth/';
+
+            if(email != "" && password != ""){
+
+                const body = {
+                    "email": email, 
+                    "password": password
+                };
+
+            Axios.post(url, body)
+                .then(response => {
+                    localStorage.setItem("userInfo", JSON.stringify(response.data));
+                    Swal("Success", "Welcome!","success");
+                    navigate('/menu');
+                }).catch(function (error) {
+                    console.log(error.toJSON());
+                    Swal( "Oops" ,  "Something went wrong" ,  "error" );
+                });
+
+        } else {
+            Swal( "Oops" ,  "Email or Password is empty." ,  "error" );
+        }
+
+    }
+
     return (
         <Container fluid='lg'>
             <Row>
@@ -36,18 +77,18 @@ const LoginForm = () => {
                         
                         <Form.Group className='mb-3'>
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type='text' placeholder='Ingrese el usuario o correo'></Form.Control>
+                            <Form.Control name="email" onChange={ handleInputChange } type='text' placeholder='Ingrese el usuario o correo'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Contraseña</Form.Label>
-                            <Form.Control type='password' placeholder='Ingresa la contraseña'></Form.Control>
+                            <Form.Control name="password" onChange={ handleInputChange } type='password' placeholder='Ingresa la contraseña'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Olvido su Contraseña</Form.Label>
                             <Form.Control type='password' placeholder='Ingresa la contraseña'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
-                            <Button type='submit' variant='primary' href="/menu">Ingresar</Button>
+                            <Button onClick={ handleClick } variant='primary' >Ingresar</Button>
                         </Form.Group>
                     </Form>
                 </Col>

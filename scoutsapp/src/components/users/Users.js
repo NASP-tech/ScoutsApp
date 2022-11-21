@@ -1,6 +1,9 @@
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import usuarios from '../images/users/usuarios.jpg';
+import '../../../src/App.css'
+
+import ReactPaginate from 'react-paginate'
 
 import EditUsers from './EditUsers';
 import DeleteUsers from './DeleteUsers';
@@ -10,33 +13,47 @@ import Axios from 'axios';
 const Users = () => {
 
     const [usersData, setUsersData] = useState([]);
+    const [currentItems, setCurrentItems] = useState(null);
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffSet, setItemOffset] = useState(0);
+    const itemsPerPage = 7;
 
     useEffect(() => {
+
+        const endOffset = itemOffSet + itemsPerPage;
+        setCurrentItems(usersData.slice(itemOffSet, endOffset));
+        setPageCount(Math.ceil(usersData.length / itemsPerPage));
+
         const getUsers = async () => {
             const url = "http://localhost:4000/api/auth/";
-            
+
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             const { token } = userInfo;
 
             const config = {
-                headers:{
+                headers: {
                     'x-token': token
                 }
             };
 
-            const {data} = await Axios.get(url, config);
+            const { data } = await Axios.get(url, config);
 
             setUsersData(data.users);
         }
         getUsers();
-    }, []);
+    }, [itemOffSet, itemsPerPage, usersData]);
+
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % usersData.length;
+        setItemOffset(newOffset);
+    };
 
     return (
         <Container fluid='lg'>
             <Row className="justify-content-center">
                 <Col md={3} className="text-center text-md">
                     <img src={usuarios} width='250px' height='150px' alt="..." />
-                    <AddUsers/>
+                    <AddUsers />
                 </Col>
             </Row>
             <Container fluid='lg'>
@@ -53,7 +70,7 @@ const Users = () => {
                                 <th className='col-4'>Eliminar</th>
                             </tr>
                         </thead>
-                        {usersData.map((item, index) => {
+                        {currentItems.map((item, index) => {
                             return (
 
                                 <tbody key={index}>
@@ -75,6 +92,20 @@ const Users = () => {
                             )
                         })}
                     </Table>
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel="siguiente >"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={5}
+                        pageCount={pageCount}
+                        previousLabel="< anterior"
+                        renderOnZeroPageCount={null}
+                        containerClassName="pagination"
+                        pageLinkClassName="page-num"
+                        previousLinkClassName="page-num"
+                        nextLinkClassName="page-num"
+                        activeClassName="active"
+                    />
                 </Row>
             </Container>
 

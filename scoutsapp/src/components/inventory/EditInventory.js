@@ -125,7 +125,7 @@ function EditInventory({ idInventory }) {
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Existencia</Form.Label>
-                            <Form.Control name="existence" value={existence} onChange={handleExistence} type='text' placeholder='Ingrese el número de cuenta'></Form.Control>
+                            <Form.Control name="existence" value={existence} onChange={handleExistence} type='text' placeholder='Ingrese la existencia'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Cantidad</Form.Label>

@@ -127,7 +127,7 @@ function EditDonations({ idDonation }) {
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>NIT</Form.Label>
-                            <Form.Control name="nit" value={nit} onChange={handleNit} type='text' placeholder='Ingrese el concepto'></Form.Control>
+                            <Form.Control name="nit" value={nit} onChange={handleNit} type='text' placeholder='Ingrese el NIT'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Dirección</Form.Label>

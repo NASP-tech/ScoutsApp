@@ -38,9 +38,12 @@ function AddDonations() {
         e.preventDefault();
         const url = 'http://localhost:4000/api/donation';
 
+        const donationInfo = JSON.parse(localStorage.getItem('userInfo'));
+        const { token } = donationInfo;
+
         const config = {
             headers:{
-                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
+                'x-token': token
             }
         };
 
@@ -90,7 +93,7 @@ function AddDonations() {
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Nit - Dui</Form.Label>
-                            <Form.Control name="nit" onChange={ handleInputChange } type='text' placeholder='Ingrese el tipo de donación'></Form.Control>
+                            <Form.Control name="nit" onChange={ handleInputChange } type='text' placeholder='Ingrese el NIT'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Tipo</Form.Label>

@@ -76,7 +76,7 @@ function AddUsers() {
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Correo</Form.Label>
-                            <Form.Control name="email" onChange={ handleInputChange } type='text' placeholder='Ingrese el Nombre'></Form.Control>
+                            <Form.Control name="email" onChange={ handleInputChange } type='text' placeholder='Ingrese el e-mail'></Form.Control>
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Contraseña</Form.Label>

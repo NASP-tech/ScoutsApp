@@ -16,9 +16,12 @@ function DeleteInventory({ idInventory }) {
 
         const url = `http://localhost:4000/api/product/${idInventory}`;
 
+        const inventoryInfo = JSON.parse(localStorage.getItem('userInfo'));
+        const { token } = inventoryInfo;
+
         const config = {
             headers:{
-                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
+                'x-token': token
             }
         };
 

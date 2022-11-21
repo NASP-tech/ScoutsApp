@@ -6,6 +6,9 @@ import Axios from 'axios';
 
 function EditInventory({ idInventory }) {
 
+    const inventoryInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const { token } = inventoryInfo;
+
     const [isShow, invokeModal] = useState(false);
 
     const [name, setName] = useState('');
@@ -26,7 +29,7 @@ function EditInventory({ idInventory }) {
 
         const config = {
             headers: {
-                'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
+                'x-token': token
             }
         };
 
@@ -77,26 +80,26 @@ function EditInventory({ idInventory }) {
         setFamilyID(e.target.value);
     }
 
-    const handleUpdateClick = async() => {
+    const handleUpdateClick = async () => {
         const url = `http://localhost:4000/api/product/getProduct/${idInventory}`;
 
-            const config = {
-                headers:{
-                    'x-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzcyYTc3NTQwM2U4YzNmNzNlMjM2ZmMiLCJuYW1lIjoiTmF0YWxpYSBTb2xvcnphbm8iLCJpYXQiOjE2Njg5MDU1MjIsImV4cCI6MTY2ODkxMjcyMn0.Fy8KIssxQyUpC3xeq0OVYF_MRhb7zBi-RHLeOqmOq14'
-                }
-            };
+        const config = {
+            headers: {
+                'x-token': token
+            }
+        };
 
-            const {data} = await Axios.get(url, config);
-            
-            setName(data.product.name);
-            setUnit(data.product.unit);
-            setExistence(data.product.existence);
-            setQuantity(data.product.quantity);
-            setCost(data.product.cost);
-            setSalePrice(data.product.sale_price);
-            setFamilyID(data.product.family_id);
+        const { data } = await Axios.get(url, config);
 
-            initModal();
+        setName(data.product.name);
+        setUnit(data.product.unit);
+        setExistence(data.product.existence);
+        setQuantity(data.product.quantity);
+        setCost(data.product.cost);
+        setSalePrice(data.product.sale_price);
+        setFamilyID(data.product.family_id);
+
+        initModal();
     }
 
     return (

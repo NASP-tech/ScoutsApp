@@ -40,7 +40,9 @@ function EditUsers({ idUsuario }) {
 
             Axios.put(url, body, config)
                 .then(response => {
-                    Swal("Success", "User Updated!","success");
+                    Swal("Success", "User Updated!","success").then(() => {
+                        window.location.reload();
+                    });
                 }).catch(function (error) {
                     console.log(error.toJSON());
                     Swal( "Oops" ,  "Something went wrong" ,  "error" );

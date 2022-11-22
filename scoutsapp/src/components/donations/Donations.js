@@ -1,5 +1,6 @@
 import {Container} from 'react-bootstrap';
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../../App.css'
 
 import DonationsPagination from './DonationsPagination';
@@ -9,8 +10,14 @@ import Axios from 'axios';
 const Donations = () => {
     
     const [donationsData, setDonationsData] = useState([]);
+    const navigate = useNavigate();
     
     useEffect(() => {
+
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+        if(!userInfo)
+            navigate('/login');
 
         const getDonations = async () =>{
             const url = "http://localhost:4000/api/donation/";
@@ -29,7 +36,7 @@ const Donations = () => {
             setDonationsData(data.donations); 
         }
         getDonations();
-    }, []);
+    }, [navigate]);
 
     return (
         <Container>

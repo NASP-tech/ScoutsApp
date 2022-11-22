@@ -45,7 +45,9 @@ function EditInventory({ idInventory }) {
 
         Axios.put(url, body, config)
             .then(response => {
-                Swal("Success", "Inventory Updated!", "success");
+                Swal("Success", "Inventory Updated!", "success").then(() => {
+                    window.location.reload();
+                });
             }).catch(function (error) {
                 console.log(error.toJSON());
                 Swal("Oops", "Something went wrong", "error");
@@ -74,10 +76,6 @@ function EditInventory({ idInventory }) {
 
     const handlePrice = (e) => {
         setSalePrice(e.target.value);
-    }
-
-    const handleFamily = (e) => {
-        setFamilyID(e.target.value);
     }
 
     const handleUpdateClick = async () => {

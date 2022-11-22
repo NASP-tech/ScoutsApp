@@ -56,10 +56,12 @@ function AddDonations() {
             "moneyQuantity": moneyQuantity
         };
 
-        if(nit.length == 14){
+        if(nit.length === 14){
             Axios.post(url, body, config)
                 .then(response => {
-                    Swal("Success", "Donation Created!", "success");
+                    Swal("Success", "Donation Created!", "success").then(() => {
+                        window.location.reload();
+                    });
                 });
         } else {
             Swal( "Oops" ,  "NIT lenght should be 14!" ,  "error" );

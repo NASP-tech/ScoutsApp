@@ -26,7 +26,9 @@ function DeleteUsers({ idUsuario }) {
 
         Axios.delete(url, config)
             .then(response => {
-                Swal("Success", "User deleted!","success");
+                Swal("Success", "User deleted!","success").then(() => {
+                    window.location.reload();
+                });
             }).catch(function (error) {
                 console.log(error.toJSON());
                 Swal( "Oops" ,  "Something went wrong" ,  "error" );

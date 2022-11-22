@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,6 +13,15 @@ const LoginForm = () => {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+        if(userInfo)
+            navigate('/menu');
+
+    }, [navigate]);
+
     const [ formValues, handleInputChange ] = useForm({
         email: '',
         password: '',
@@ -23,7 +33,7 @@ const LoginForm = () => {
         e.preventDefault();
         const url = 'http://localhost:4000/api/auth/';
 
-            if(email != "" && password != ""){
+            if(email !== "" && password !== ""){
 
                 const body = {
                     "email": email, 
@@ -33,7 +43,6 @@ const LoginForm = () => {
             Axios.post(url, body)
                 .then(response => {
                     localStorage.setItem("userInfo", JSON.stringify(response.data));
-                    Swal("Success", "Welcome!","success");
                     navigate('/menu');
                 }).catch(function (error) {
                     console.log(error.toJSON());

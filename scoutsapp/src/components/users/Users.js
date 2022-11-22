@@ -1,5 +1,6 @@
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../../App.css'
 
 import UserPagination from './UserPagination';
@@ -9,13 +10,18 @@ import Axios from 'axios';
 const Users = () => {
 
     const [usersData, setUsersData] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
+
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+        if(!userInfo)
+            navigate('/login');
 
         const getUsers = async () => {
             const url = "http://localhost:4000/api/auth/";
 
-            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             const { token } = userInfo;
 
             const config = {
@@ -29,7 +35,7 @@ const Users = () => {
             setUsersData(data.users);
         }
         getUsers();
-    }, []);
+    }, [navigate]);
 
     return (
         <Container>

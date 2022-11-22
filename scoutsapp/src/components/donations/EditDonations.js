@@ -44,7 +44,9 @@ function EditDonations({ idDonation }) {
 
             Axios.put(url, body, config)
                 .then(response => {
-                    Swal("Success", "Donations Updated!", "success");
+                    Swal("Success", "Donations Updated!", "success").then(() => {
+                        window.location.reload();
+                    });
                 }).catch(function (error) {
                     console.log(error.toJSON());
                     Swal("Oops", "Something went wrong", "error");

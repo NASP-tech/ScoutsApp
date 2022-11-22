@@ -64,7 +64,9 @@ function EditSales({ idSales }) {
 
             Axios.put(url, body, config)
                 .then(response => {
-                    Swal("Success", "Sale Updated!","success");
+                    Swal("Success", "Sale Updated!","success").then(() => {
+                        window.location.reload();
+                    });
                 }).catch(function (error) {
                     console.log(error.toJSON());
                     Swal( "Oops" ,  "Something went wrong" ,  "error" );
@@ -73,14 +75,6 @@ function EditSales({ idSales }) {
         } else {
             Swal( "Oops" ,  "Dui should be length 9!" ,  "error" )
         }        
-    }
-
-    const handleExemptSales = (e) => {
-        setExemptSales(e.target.value);
-    }
-
-    const handleUnitPrice = (e) => {
-        setUnitPrice(e.target.value);
     }
 
     const handleClient = (e) => {
@@ -111,30 +105,9 @@ function EditSales({ idSales }) {
         setDescription(e.target.value);
     }
 
-    const handleRecordedSales = (e) => {
-        setRecordedSale(e.target.value);
-    }
-
     const handleTotalCost = (e) => {
         setTotalCost(e.target.value);
     }
-
-    const handleRecieverName = (e) => {
-        setRecieverName(e.target.value);
-    }
-
-    const handleForeignPass = (e) => {
-        setForeign_passport_residency(e.target.value);
-    }
-
-    const handleForeignName = (e) => {
-        setForeign_name(e.target.value);
-    }
-
-    const handleRecieverDui = (e) => {
-        setRecieverDui(e.target.value);
-    }
-
 
     const handleUpdateClick = async() => {
         const url = `http://localhost:4000/api/billing/getBilling/${idSales}`;

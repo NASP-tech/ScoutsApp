@@ -1,5 +1,6 @@
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../../App.css'
 
 import SalesPagination from './SalesPagination';
@@ -9,8 +10,14 @@ import Axios from 'axios';
 const Sales = () => {
 
     const [salesData, setSalesData] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
+
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+        if(!userInfo)
+            navigate('/login');
 
         const getSales = async () => {
             const url = "http://localhost:4000/api/billing/";
@@ -31,7 +38,7 @@ const Sales = () => {
             setSalesData(data.billings);
         }
         getSales();
-    }, []);   
+    }, [navigate]);   
 
     return (
         <Container>

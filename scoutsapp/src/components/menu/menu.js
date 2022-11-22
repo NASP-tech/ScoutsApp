@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { Button, Col, Container, Row, Carousel } from 'react-bootstrap';
 import donaciones from '../images/donations/donaciones.jpg';
 import inventario from '../images/inventory/inventario.jpg';
@@ -9,8 +10,21 @@ import scouts2 from '../images/menu/scouts2.jpg';
 import scouts3 from '../images/menu/scouts3.jpg';
 import scouts4 from '../images/menu/scouts4.jpeg';
 import scouts5 from '../images/menu/scouts4.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+        if(!userInfo)
+            navigate('/login');
+
+    }, [navigate]);
+
     return (
         <Container fluid='lg'>
             <Carousel>
@@ -77,7 +91,7 @@ const Menu = () => {
             <Container fluid='lg'>
                 <Row className="justify-content-center">
                     <Col md={2} className="text-center text-md">
-                        <img src={inventario} width='200px' height='150px' className='rounded'/>
+                        <img src={inventario} alt="inventario" width='200px' height='150px' className='rounded'/>
                         <Button 
                             variant="outline-success"
                             href='/inventory'>
@@ -85,7 +99,7 @@ const Menu = () => {
                         </Button>
                     </Col>
                     <Col md={2} className="text-center text-md">
-                        <img src={ventas} width='200px' height='150px' className='rounded'/>
+                        <img src={ventas} alt="ventas" width='200px' height='150px' className='rounded'/>
                         <Button                             
                             variant="outline-success"
                             href='/sales'> 
@@ -93,7 +107,7 @@ const Menu = () => {
                         </Button>
                     </Col>
                     <Col md={2} className="text-center text-md">
-                        <img src={donaciones} width='200px' height='150px' className='rounded'/>
+                        <img src={donaciones} alt="donaciones" width='200px' height='150px' className='rounded'/>
                         <Button 
                             variant="outline-success"
                             href='/donations'>
@@ -101,7 +115,7 @@ const Menu = () => {
                         </Button>
                     </Col>
                     <Col md={2} className="text-center text-md">
-                        <img src={usuarios} width='200px' height='150px' className='rounded'/>
+                        <img src={usuarios} alt="usuario" width='200px' height='150px' className='rounded'/>
                         <Button 
                             variant="outline-success"
                             href='/users'>

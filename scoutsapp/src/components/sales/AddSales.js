@@ -75,7 +75,9 @@ function AddSales() {
 
         Axios.post(url, body, config)
             .then(response => {
-                Swal("Success", "Sale Created!","success");
+                Swal("Success", "Sale Created!","success").then(() => {
+                    window.location.reload();
+                });
             });
     }
 

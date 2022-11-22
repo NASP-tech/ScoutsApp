@@ -27,7 +27,9 @@ function DeleteDonations({ idDonation }) {
 
         Axios.delete(url, config)
             .then(response => {
-                Swal("Success", "Donations deleted!","success");
+                Swal("Success", "Donations deleted!","success").then(() => {
+                    window.location.reload();
+                });
             }).catch(function (error) {
                 console.log(error.toJSON());
                 Swal( "Oops" ,  "Something went wrong" ,  "error" );

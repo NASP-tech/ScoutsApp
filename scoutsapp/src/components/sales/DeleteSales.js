@@ -27,7 +27,9 @@ function DeleteSales({ idSales }) {
 
         Axios.delete(url, config)
             .then(response => {
-                Swal("Success", "Sale deleted!","success");
+                Swal("Success", "Sale deleted!","success").then(() => {
+                    window.location.reload();
+                });
             }).catch(function (error) {
                 console.log(error.toJSON());
                 Swal( "Oops" ,  "Something went wrong" ,  "error" );

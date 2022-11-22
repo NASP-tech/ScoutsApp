@@ -1,6 +1,5 @@
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
-import inventario from '../images/inventory/inventario.jpg'
 import '../../App.css'
 
 import InventoryPagination from './InventoryPagination';
@@ -26,8 +25,6 @@ const Inventory = () => {
             };
 
             const { data } = await Axios.get(url, config);
-
-            console.log(data);
 
             setInventoryData(data.products);
         }

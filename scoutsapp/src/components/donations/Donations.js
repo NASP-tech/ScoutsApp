@@ -1,6 +1,9 @@
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import React, { useState, useEffect } from "react";
 import donaciones from '../images/donations/donaciones.jpg'
+import '../../App.css'
+
+import ReactPaginate from 'react-paginate'
 
 import AddDonations from './AddDonations';
 import EditDonations from './EditDonations';
@@ -10,8 +13,16 @@ import Axios from 'axios';
 const Donations = () => {
     
     const [donationsData, setDonationsData] = useState([]);
+    const [currentDonation, setCurrentDonation] = useState(null);
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffSet, setItemOffset] = useState(0);
+    const itemsPerPage = 7;
 
     useEffect(() => {
+
+        const endOffset = itemOffSet + itemsPerPage;
+        setCurrentDonation(donationsData.slice(itemOffSet, endOffset));
+        setPageCount(Math.ceil(donationsData.length / itemsPerPage));
 
         const getDonations = async () =>{
             const url = "http://localhost:4000/api/donation/";
@@ -30,7 +41,12 @@ const Donations = () => {
             setDonationsData(data.donations); 
         }
         getDonations();
-    }, []);
+    }, [itemOffSet, itemsPerPage, donationsData]);
+
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % donationsData.length;
+        setItemOffset(newOffset);
+    };
 
     return (
         <Container fluid='lg'>
@@ -55,7 +71,7 @@ const Donations = () => {
                                 <th className='col-4'>Eliminar</th>
                             </tr>
                         </thead>
-                        {donationsData.map((item, index) => {
+                        {currentDonation.map((item, index) => {
 
                             return (
 
@@ -79,6 +95,20 @@ const Donations = () => {
                             )
                         })}
                     </Table>
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel="siguiente >"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={5}
+                        pageCount={pageCount}
+                        previousLabel="< anterior"
+                        renderOnZeroPageCount={null}
+                        containerClassName="pagination"
+                        pageLinkClassName="page-num"
+                        previousLinkClassName="page-num"
+                        nextLinkClassName="page-num"
+                        activeClassName="active"
+                    />
                 </Row>
             </Container>
 

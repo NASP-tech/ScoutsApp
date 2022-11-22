@@ -2,6 +2,10 @@ import { Col, Container, Row, Table } from 'react-bootstrap';
 import React, { useState, useEffect } from "react";
 import sales from '../images/sales/ventas.jpg';
 
+import '../../App.css'
+
+import ReactPaginate from 'react-paginate'
+
 import AddSales from './AddSales';
 import DeleteSales from './DeleteSales';
 import EditSales from './EditSales';
@@ -10,8 +14,17 @@ import Axios from 'axios';
 const Sales = () => {
 
     const [salesData, setSalesData] = useState([]);
+    const [currentSale, setCurrentSale] = useState(null);
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffSet, setItemOffset] = useState(0);
+    const itemsPerPage = 5;
 
     useEffect(() => {
+
+        const endOffset = itemOffSet + itemsPerPage;
+        setCurrentSale(salesData.slice(itemOffSet, endOffset));
+        setPageCount(Math.ceil(salesData.length / itemsPerPage));
+
         const getSales = async () => {
             const url = "http://localhost:4000/api/billing/";
 
@@ -31,7 +44,12 @@ const Sales = () => {
             setSalesData(data.billings);
         }
         getSales();
-    }, []);
+    }, [itemOffSet, itemsPerPage, salesData]);
+
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % salesData.length;
+        setItemOffset(newOffset);
+    };
     
 
     return (
@@ -48,7 +66,7 @@ const Sales = () => {
                         <thead className="thead-dark">
                             <tr>
                                 <th className="col-3">Cliente</th>
-                                <th className="col-3">Dirección</th>
+                                <th className="col-5">Dirección</th>
                                 <th className="col">Fecha</th>
                                 <th className="col">Nombre Cuenta</th>
                                 <th className="col-3">DUI</th>
@@ -59,7 +77,7 @@ const Sales = () => {
                                 <th className='col-4'>Eliminar</th>
                             </tr>
                         </thead>
-                        {salesData.map((item, index) => {
+                        {currentSale.map((item, index) => {
                             return (
 
                                 <tbody>
@@ -84,6 +102,20 @@ const Sales = () => {
                             )
                         })}
                     </Table>
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel="siguiente >"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={5}
+                        pageCount={pageCount}
+                        previousLabel="< anterior"
+                        renderOnZeroPageCount={null}
+                        containerClassName="pagination"
+                        pageLinkClassName="page-num"
+                        previousLinkClassName="page-num"
+                        nextLinkClassName="page-num"
+                        activeClassName="active"
+                    />
                 </Row>
             </Container>
 

@@ -14,7 +14,7 @@ function DeleteSales({ idSales }) {
 
     const handleDelete = () => {
 
-        const url = `http://localhost:4000/api/billing/${idSales}`;
+        const url = `https://scouts-app-64ig4.ondigitalocean.app/api/billing/${idSales}`;
 
         const salesInfo = JSON.parse(localStorage.getItem('userInfo'));
         const { token } = salesInfo;

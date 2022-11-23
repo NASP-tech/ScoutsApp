@@ -20,7 +20,7 @@ const Inventory = () => {
             navigate('/login');
 
         const getInventory = async () => {
-            const url = "http://localhost:4000/api/product/";
+            const url = "https://scouts-app-64ig4.ondigitalocean.app/api/product/";
 
             const inventoryInfo = JSON.parse(localStorage.getItem('userInfo'));
             const { token } = inventoryInfo;

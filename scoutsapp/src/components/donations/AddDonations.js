@@ -36,7 +36,7 @@ function AddDonations() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        const url = 'http://localhost:4000/api/donation';
+        const url = 'https://scouts-app-64ig4.ondigitalocean.app/api/donation';
 
         const donationInfo = JSON.parse(localStorage.getItem('userInfo'));
         const { token } = donationInfo;

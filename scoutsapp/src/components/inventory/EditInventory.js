@@ -25,7 +25,7 @@ function EditInventory({ idInventory }) {
 
     const handleClick = () => {
 
-        const url = `http://localhost:4000/api/product/${idInventory}`;
+        const url = `https://scouts-app-64ig4.ondigitalocean.app/api/product/${idInventory}`;
 
         const config = {
             headers: {
@@ -79,7 +79,7 @@ function EditInventory({ idInventory }) {
     }
 
     const handleUpdateClick = async () => {
-        const url = `http://localhost:4000/api/product/getProduct/${idInventory}`;
+        const url = `https://scouts-app-64ig4.ondigitalocean.app/api/product/getProduct/${idInventory}`;
 
         const config = {
             headers: {

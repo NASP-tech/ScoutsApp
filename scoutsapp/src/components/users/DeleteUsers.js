@@ -13,7 +13,7 @@ function DeleteUsers({ idUsuario }) {
 
     const handleDelete = () => {
 
-        const url = `http://localhost:4000/api/auth/deleteUser/${idUsuario}`;
+        const url = `https://scouts-app-64ig4.ondigitalocean.app/api/auth/deleteUser/${idUsuario}`;
 
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
         const { token } = userInfo;

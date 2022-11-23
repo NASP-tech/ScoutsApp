@@ -14,7 +14,7 @@ function DeleteDonations({ idDonation }) {
 
     const handleDelete = () => {
 
-        const url = `http://localhost:4000/api/donation/${idDonation}`;
+        const url = `https://scouts-app-64ig4.ondigitalocean.app/api/donation/${idDonation}`;
 
         const donationInfo = JSON.parse(localStorage.getItem('userInfo'));
         const { token } = donationInfo;

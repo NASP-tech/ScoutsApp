@@ -36,7 +36,7 @@ function EditSales({ idSales }) {
         
         if(dui_nit.length === 9){
 
-            const url = `http://localhost:4000/api/billing/${idSales}`;
+            const url = `https://scouts-app-64ig4.ondigitalocean.app/api/billing/${idSales}`;
 
             const config = {
                 headers:{
@@ -110,7 +110,7 @@ function EditSales({ idSales }) {
     }
 
     const handleUpdateClick = async() => {
-        const url = `http://localhost:4000/api/billing/getBilling/${idSales}`;
+        const url = `https://scouts-app-64ig4.ondigitalocean.app/api/billing/getBilling/${idSales}`;
 
             const config = {
                 headers:{

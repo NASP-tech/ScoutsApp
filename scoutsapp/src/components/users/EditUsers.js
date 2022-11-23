@@ -23,7 +23,7 @@ function EditUsers({ idUsuario }) {
         
         if(dui.length === 9){
 
-            const url = `http://localhost:4000/api/auth/${idUsuario}`;
+            const url = `https://scouts-app-64ig4.ondigitalocean.app/api/auth/${idUsuario}`;
 
             const config = {
                 headers:{
@@ -70,7 +70,7 @@ function EditUsers({ idUsuario }) {
     }
 
     const handleUpdateClick = async() => {
-            const url = `http://localhost:4000/api/auth/getUser/${idUsuario}`;
+            const url = `https://scouts-app-64ig4.ondigitalocean.app/api/auth/getUser/${idUsuario}`;
 
             const config = {
                 headers:{

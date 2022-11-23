@@ -31,7 +31,7 @@ const LoginForm = () => {
 
     const handleClick = (e) => { 
         e.preventDefault();
-        const url = 'http://localhost:4000/api/auth/';
+        const url = 'https://scouts-app-64ig4.ondigitalocean.app/api/auth/';
 
             if(email !== "" && password !== ""){
 

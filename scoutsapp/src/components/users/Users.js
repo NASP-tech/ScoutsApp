@@ -20,7 +20,7 @@ const Users = () => {
             navigate('/login');
 
         const getUsers = async () => {
-            const url = "http://localhost:4000/api/auth/";
+            const url = "https://scouts-app-64ig4.ondigitalocean.app/api/auth/";
 
             const { token } = userInfo;
 

@@ -46,7 +46,7 @@ function AddSales() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        const url = 'http://localhost:4000/api/billing';
+        const url = 'https://scouts-app-64ig4.ondigitalocean.app/api/billing';
 
         const salesInfo = JSON.parse(localStorage.getItem('userInfo'));
         const { token } = salesInfo;

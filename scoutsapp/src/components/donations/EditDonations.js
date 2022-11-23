@@ -25,7 +25,7 @@ function EditDonations({ idDonation }) {
     const handleClick = () => {
 
         if (nit.length === 14) {
-            const url = `http://localhost:4000/api/donation/${idDonation}`;
+            const url = `https://scouts-app-64ig4.ondigitalocean.app/api/donation/${idDonation}`;
 
             const config = {
                 headers: {
@@ -82,7 +82,7 @@ function EditDonations({ idDonation }) {
     }
 
     const handleUpdateClick = async () => {
-        const url = `http://localhost:4000/api/donation/getDonation/${idDonation}`;
+        const url = `https://scouts-app-64ig4.ondigitalocean.app/api/donation/getDonation/${idDonation}`;
 
         const config = {
             headers: {

@@ -26,7 +26,7 @@ function AddUsers() {
 
     const handleClick = (e) => { 
         e.preventDefault();
-        const url = 'http://localhost:4000/api/auth/new';
+        const url = 'https://scouts-app-64ig4.ondigitalocean.app/api/auth/new';
 
         if(password === confirmPassword){
 

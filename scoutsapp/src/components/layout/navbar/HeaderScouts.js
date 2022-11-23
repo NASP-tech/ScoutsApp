@@ -2,12 +2,18 @@ import { Container, Navbar, Nav } from 'react-bootstrap';
 import Logo from '../../images/loginForm/navLogo.png';
 
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const HeaderScouts = () => {
 
     const navigate = useNavigate();
-    const logout = () => {
+
+    const token = localStorage.getItem('userInfo');
+
+    const logout = async () => {
         localStorage.removeItem('userInfo');
+
+        navigate("/login", { replace: true });
     };
 
     return (
@@ -35,7 +41,7 @@ const HeaderScouts = () => {
             </Container>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <Nav.Link href="/login">Logout</Nav.Link>
+                    <Nav.Link onClick={logout}>Logout</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
             <Navbar.Brand href="/login">

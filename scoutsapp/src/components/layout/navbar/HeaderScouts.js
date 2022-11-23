@@ -1,7 +1,15 @@
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import Logo from '../../images/loginForm/navLogo.png';
 
+import { useNavigate } from 'react-router-dom';
+
 const HeaderScouts = () => {
+
+    const navigate = useNavigate();
+    const logout = () => {
+        localStorage.removeItem('userInfo');
+    };
+
     return (
         <Navbar bg="light" variant='light'>
             <Container>
@@ -25,6 +33,11 @@ const HeaderScouts = () => {
                     </Nav>
                 </Navbar.Collapse>
             </Container>
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="ml-auto">
+                    <Nav.Link href="/login">Logout</Nav.Link>
+                </Nav>
+            </Navbar.Collapse>
             <Navbar.Brand href="/login">
                 <img
                     alt=""
@@ -34,6 +47,7 @@ const HeaderScouts = () => {
                 />{' '}
 
             </Navbar.Brand>
+
         </Navbar>
     );
 };
